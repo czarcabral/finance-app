@@ -2,109 +2,121 @@
   <h1>Welcome to Retirement Planning!</h1>
 </header>
 <main>
-  <section>
-    <h3>Let's get started</h3>
-    <div>
-      <div fxLayout="column">
-        <label>How old are you?</label>
-        <input placeholder="25" />
+  <form [formGroup]="userInfoForm" (ngSubmit)="submitUserInfo()">
+    <section>
+      <h3>Let's get started</h3>
+      <div>
+        <div fxLayout="column">
+          <label for="currentAge">How old are you?</label>
+          <input formControlName="currentAge" id="currentAge" type="number" placeholder="Your current age" />
+          <div *ngIf="uif.currentAge.invalid">
+            <small class="error-validation" *ngIf="uif.currentAge.errors.required">required</small>
+          </div>
+        </div>
+        <div fxLayout="column">
+          <label for="retirementAge">When do you expect to retire?</label>
+          <input formControlName="retirementAge" id="retirementAge" type="number" placeholder="Expected age of retirement" />
+          <div *ngIf="uif.retirementAge.invalid">
+            <small class="error-validation" *ngIf="uif.retirementAge.errors.required">required</small>
+            <!-- <div *ngIf="uif.currentAge.errors.minlength">Name should be 3 character.</div> -->
+          </div>
+        </div>
+        <div fxLayout="column">
+          <label for="deathAge">When do you expect to die?</label>
+          <input formControlName="deathAge" id="deathAge" type="number" placeholder="Expected age of death" />
+          <div *ngIf="uif.deahAge.invalid">
+            <small class="error-validation" *ngIf="uif.deathAge.errors.required">required</small>
+          </div>
+        </div>
       </div>
-      <div fxLayout="column">
-        <label>When do you expect to retire?</label>
-        <input placeholder="60" />
+    </section>
+    <section>
+      <p>
+        Now, imagine that you're retiring this year. You'll still still need money to pay for normal monthly bills as well as
+        anything else that you want to spend your hard earned money on. How much money do you think you'd need per month?
+        <br />
+        <small>
+          Note: Let's assume that you've paid off all of your debts and own your own home/car and other assets. This does not
+          include rental properties (because those would be extra money) and any other investments. Your kids will also probably
+          be out of the house by this time so do not include them in costs as well.
+        </small>
+      </p>
+    </section>
+    <section>
+      <h3>
+        Home and Other Assets <br />
+        <small>
+          Basically, how much does it cost to own and live in your home? Your car(s)? Do not include gas bills because this
+          can vary.
+        </small>
+      </h3>
+      <div>
+        <div fxLayout="column">
+          <label>Property Tax</label>
+          <label>Utilities</label>
+          <input placeholder="Average is $435 + $180" />
+        </div>
+        <div fxLayout="column">
+          <label>Car Insurance</label>
+          <label>Car Maintenence</label>
+          <label>Registration</label>
+          <input placeholder="Average is about $100 + $100 + $10" />
+        </div>
       </div>
-      <div fxLayout="column">
-        <label>When do you expect to die?</label>
-        <input placeholder="90" />
+    </section>
+    <section>
+      <h3>
+        Healthcare and Insurance <br />
+        <small>Note: This was difficult to estimate but google searches have averaged around $600.</small>
+      </h3>
+      <div>
+        <div fxLayout="column">
+          <label>Health/Life Insurance and Out of Pocket Costs</label>
+          <input placeholder="Average is about $600" />
+        </div>
       </div>
-    </div>
-  </section>
-  <section>
-    <h3>
-      Now, imagine that you're retiring this year. You'll still still need money to pay for normal monthly bills as well as
-      anything else that you want to spend your hard earned money on. How much money do you think you'd need per month?
-      <br />
-      <small>
-        Note: Let's assume that you've paid off all of your debts and own your own home/car and other assets. This does not
-        include rental properties (because those would be extra money) and any other investments. Your kids will also probably
-        be out of the house by this time so do not include them in costs as well.
-      </small>
-    </h3>
-  </section>
-  <section>
-    <h3>
-      Home and Other Assets <br />
-      <small>
-        Basically, how much does it cost to own and live in your home? Your car(s)? Do not include gas bills because this
-        can vary.
-      </small>
-    </h3>
-    <div>
-      <div fxLayout="column">
-        <label>Property Tax</label>
-        <label>Utilities</label>
-        <input placeholder="Average is $435 + $180" />
+    </section>
+    <section>
+      <h3>
+        Food and Groceries<br />
+        <small>Restaurants, fast food, alcohol, groceries, etc.</small>
+      </h3>
+      <div>
+        <div fxLayout="column">
+          <label>Food/Groceries</label>
+          <input placeholder="$600" />
+        </div>
       </div>
-      <div fxLayout="column">
-        <label>Car Insurance</label>
-        <label>Car Maintenence</label>
-        <label>Registration</label>
-        <input placeholder="Average is about $100 + $100 + $10" />
+    </section>
+    <section>
+      <h3>
+        Vacation Expenses <br />
+        <small>Averaged over the year.</small>
+      </h3>
+      <div>
+        <div fxLayout="column">
+          <label>Vacation Expenses</label>
+          <input placeholder="$250" />
+        </div>
       </div>
-    </div>
-  </section>
-  <section>
-    <h3>
-      Healthcare and Insurance <br />
-      <small>Note: This was difficult to estimate but google searches have averaged around $600.</small>
-    </h3>
-    <div>
-      <div fxLayout="column">
-        <label>Health/Life Insurance and Out of Pocket Costs</label>
-        <input placeholder="Average is about $600" />
+    </section>
+    <section>
+      <h3>
+        Personal Expenses <br />
+        <small>Any optional expenses e.g. shopping, transportation costs, and everything else.</small>
+      </h3>
+      <div>
+        <div fxLayout="column">
+          <label>Personal Expenses</label>
+          <input placeholder="$500" />
+        </div>
       </div>
-    </div>
-  </section>
-  <section>
-    <h3>
-      Food and Groceries<br />
-      <small>Restaurants, fast food, alcohol, groceries, etc.</small>
-    </h3>
-    <div>
-      <div fxLayout="column">
-        <label>Food/Groceries</label>
-        <input placeholder="$600" />
-      </div>
-    </div>
-  </section>
-  <section>
-    <h3>
-      Vacation Expenses <br />
-      <small>Averaged over the year.</small>
-    </h3>
-    <div>
-      <div fxLayout="column">
-        <label>Vacation Expenses</label>
-        <input placeholder="$250" />
-      </div>
-    </div>
-  </section>
-  <section>
-    <h3>
-      Personal Expenses <br />
-      <small>Any optional expenses e.g. shopping, transportation costs, and everything else.</small>
-    </h3>
-    <div>
-      <div fxLayout="column">
-        <label>Personal Expenses</label>
-        <input placeholder="$500" />
-      </div>
-    </div>
-  </section>
-  <section>
-    <h3>
-      Total Amount <br />
-    </h3>
-    <h3>${{ 4000 | number:"0.0-0" }}</h3>
-  </section>
+    </section>
+    <section>
+      <h3>
+        Total Amount <br />
+      </h3>
+      <h3>${{ 4000 | number:"0.0-0" }}</h3>
+    </section>
+  </form>
 </main>

@@ -80,3 +80,7 @@ body {
   font-family: 'Alegreya', serif;
   font-size: 22px;
 }
+
+.error-validation {
+  color: rgba(255, 0, 0, 0.788);
+}
