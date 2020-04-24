@@ -2,30 +2,30 @@
   <h1>Welcome to Retirement Planning!</h1>
 </header>
 <main>
-  <form [formGroup]="userInfoForm" (ngSubmit)="submitUserInfo()">
+  <form [formGroup]="retirementForm" (ngSubmit)="submitUserInfo()">
     <section>
       <h3>Let's get started</h3>
       <div>
         <div fxLayout="column">
           <label for="currentAge">How old are you?</label>
           <input formControlName="currentAge" id="currentAge" type="number" placeholder="Your current age" />
-          <div *ngIf="uif.currentAge.invalid">
-            <small class="error-validation" *ngIf="uif.currentAge.errors.required">required</small>
+          <div *ngIf="rf.currentAge.invalid">
+            <small class="error-validation" *ngIf="rf.currentAge.errors.required">required</small>
           </div>
         </div>
         <div fxLayout="column">
           <label for="retirementAge">When do you expect to retire?</label>
           <input formControlName="retirementAge" id="retirementAge" type="number" placeholder="Expected age of retirement" />
-          <div *ngIf="uif.retirementAge.invalid">
-            <small class="error-validation" *ngIf="uif.retirementAge.errors.required">required</small>
-            <!-- <div *ngIf="uif.currentAge.errors.minlength">Name should be 3 character.</div> -->
+          <div *ngIf="rf.retirementAge.invalid">
+            <small class="error-validation" *ngIf="rf.retirementAge.errors.required">required</small>
+            <!-- <div *ngIf="rf.currentAge.errors.minlength">Name should be 3 character.</div> -->
           </div>
         </div>
         <div fxLayout="column">
           <label for="deathAge">When do you expect to die?</label>
           <input formControlName="deathAge" id="deathAge" type="number" placeholder="Expected age of death" />
-          <div *ngIf="uif.deahAge.invalid">
-            <small class="error-validation" *ngIf="uif.deathAge.errors.required">required</small>
+          <div *ngIf="rf.deathAge.invalid">
+            <small class="error-validation" *ngIf="rf.deathAge.errors.required">required</small>
           </div>
         </div>
       </div>
@@ -50,17 +50,25 @@
           can vary.
         </small>
       </h3>
-      <div>
+      <div formGroupName="expenses">
         <div fxLayout="column">
-          <label>Property Tax</label>
-          <label>Utilities</label>
-          <input placeholder="Average is $435 + $180" />
+          <label for="homeCosts">Property Tax</label>
+          <label for="homeCosts">Utilities</label>
+          <span>$&nbsp;<input formControlName="homeCosts" id="homeCosts" type="number" placeholder="Costs of living in home" /></span>
+          <!-- <input formControlName="homeCosts" id="homeCosts" type="text" placeholder="Costs of living in home"
+            (focus)="unformatMoney('homeCosts')" (blur)="formatMoney('homeCosts')" [value]="rf.homeCosts.value | currency:'USD':'symbol':'0.0-0'" /> -->
+          <div *ngIf="rf.expenses.get('homeCosts').invalid">
+            <small class="error-validation" *ngIf="rf.expenses.get('homeCosts').errors.required">required</small>
+          </div>
         </div>
         <div fxLayout="column">
-          <label>Car Insurance</label>
-          <label>Car Maintenence</label>
-          <label>Registration</label>
-          <input placeholder="Average is about $100 + $100 + $10" />
+          <label for="carCosts">Car Insurance</label>
+          <label for="carCosts">Car Maintenence</label>
+          <label for="carCosts">Registration</label>
+          <span>$&nbsp;<input formControlName="carCosts" id="carCosts" type="number" placeholder="Costs of owning a car" /></span>
+          <div *ngIf="rf.expenses.get('carCosts').invalid">
+            <small class="error-validation" *ngIf="rf.expenses.get('carCosts').errors.required">required</small>
+          </div>
         </div>
       </div>
     </section>
@@ -69,10 +77,13 @@
         Healthcare and Insurance <br />
         <small>Note: This was difficult to estimate but google searches have averaged around $600.</small>
       </h3>
-      <div>
+      <div formGroupName="expenses">
         <div fxLayout="column">
-          <label>Health/Life Insurance and Out of Pocket Costs</label>
-          <input placeholder="Average is about $600" />
+          <label for="healthcare">Health/Life Insurance and Out of Pocket Costs</label>
+          <span>$&nbsp;<input formControlName="healthcare" id="healthcare" type="number" placeholder="Premiums and copays" /></span>
+          <div *ngIf="rf.expenses.get('healthcare').invalid">
+            <small class="error-validation" *ngIf="rf.expenses.get('healthcare').errors.required">required</small>
+          </div>
         </div>
       </div>
     </section>
@@ -81,10 +92,13 @@
         Food and Groceries<br />
         <small>Restaurants, fast food, alcohol, groceries, etc.</small>
       </h3>
-      <div>
+      <div formGroupName="expenses">
         <div fxLayout="column">
-          <label>Food/Groceries</label>
-          <input placeholder="$600" />
+          <label for="food">Food/Groceries</label>
+          <span>$&nbsp;<input formControlName="food" id="food" type="number" placeholder="Restaurants, fast food, groceries, etc." /></span>
+          <div *ngIf="rf.expenses.get('food').invalid">
+            <small class="error-validation" *ngIf="rf.expenses.get('food').errors.required">required</small>
+          </div>
         </div>
       </div>
     </section>
@@ -93,10 +107,13 @@
         Vacation Expenses <br />
         <small>Averaged over the year.</small>
       </h3>
-      <div>
+      <div formGroupName="expenses">
         <div fxLayout="column">
-          <label>Vacation Expenses</label>
-          <input placeholder="$250" />
+          <label for="vacation">Vacation Expenses</label>
+          <span>$&nbsp;<input formControlName="vacation" id="vacation" type="number" placeholder="Hotel, travel, and other major expenses" /></span>
+          <div *ngIf="rf.expenses.get('vacation').invalid">
+            <small class="error-validation" *ngIf="rf.expenses.get('vacation').errors.required">required</small>
+          </div>
         </div>
       </div>
     </section>
@@ -105,10 +122,13 @@
         Personal Expenses <br />
         <small>Any optional expenses e.g. shopping, transportation costs, and everything else.</small>
       </h3>
-      <div>
+      <div formGroupName="expenses">
         <div fxLayout="column">
-          <label>Personal Expenses</label>
-          <input placeholder="$500" />
+          <label for="personal">Personal Expenses</label>
+          <span>$&nbsp;<input formControlName="personal" id="personal" type="number" placeholder="Everything else" /></span>
+          <div *ngIf="rf.expenses.get('personal').invalid">
+            <small class="error-validation" *ngIf="rf.expenses.get('personal').errors.required">required</small>
+          </div>
         </div>
       </div>
     </section>
@@ -116,7 +136,7 @@
       <h3>
         Total Amount <br />
       </h3>
-      <h3>${{ 4000 | number:"0.0-0" }}</h3>
+      <h3>${{ total | number:"0.0-0" }}</h3>
     </section>
   </form>
 </main>
