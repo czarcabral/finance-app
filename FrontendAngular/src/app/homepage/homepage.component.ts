@@ -9,8 +9,13 @@ import { FormGroup, FormControl, Validators, FormBuilder, FormGroupName } from '
 export class HomepageComponent implements OnInit {
 
   retirementForm: FormGroup;
-  submitted = false;
+  assets = 0;
+  healthcare = 0;
+  food = 0;
+  vacation = 0;
+  personal = 0;
   total = 0;
+  submitted = false;
 
   constructor(private fb: FormBuilder) { }
 
@@ -25,22 +30,33 @@ export class HomepageComponent implements OnInit {
       retirementAge: [60, [Validators.required]],
       deathAge: [90, [Validators.required]],
       expenses: this.fb.group({
-        homeCosts: [615, [Validators.required]],
-        carCosts: [220, [Validators.required]],
-        healthcare: [600, [Validators.required]],
-        food: [600, [Validators.required]],
-        vacation: [250, [Validators.required]],
-        personal: [500, [Validators.required]],
+        homeCosts: [615],
+        carCosts: [220],
+        healthcare: [600],
+        groceries: [600],
+        restaurants: [600],
+        vacation: [250],
+        personal: [500],
       })
     });
-    const expenses = this.retirementForm.controls.expenses as FormGroup;
-    this.total = Object.keys(expenses.controls).reduce((acc, cur) => expenses.get(cur).value + acc, 0);
+    const expenses = (this.retirementForm.controls.expenses as FormGroup).controls;
+    this.assets = (expenses.homeCosts.value | 0) + (expenses.carCosts.value | 0);
+    this.healthcare = (expenses.healthcare.value | 0);
+    this.food = (expenses.groceries.value | 0) + (expenses.restaurants.value | 0);
+    this.vacation = (expenses.vacation.value | 0);
+    this.personal = (expenses.personal.value | 0);
+    this.total = this.assets + this.healthcare + this.food + this.vacation + this.personal;
   }
 
   initSubscribers() {
-    this.retirementForm.valueChanges.subscribe(val => {
-      const expenses: any = val.expenses;
-      this.total = Object.keys(expenses).reduce((acc, cur) => expenses[cur] + acc, 0);
+    (this.retirementForm.get("expenses") as FormGroup).valueChanges.subscribe(val => {
+      const expenses: any = val;
+      this.assets = (expenses.homeCosts | 0) + (expenses.carCosts | 0);
+      this.healthcare = (expenses.healthcare | 0);
+      this.food = (expenses.groceries | 0) + (expenses.restaurants | 0);
+      this.vacation = (expenses.vacation | 0);
+      this.personal = (expenses.personal | 0);
+      this.total = this.assets + this.healthcare + this.food + this.vacation + this.personal;
     });
   }
 
