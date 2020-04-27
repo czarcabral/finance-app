@@ -1,8 +1,9 @@
-* {
-  margin: 0;
+html, body {
+  height: 100%;
 }
 
 body {
+  margin: 0;
   padding: 0 200px;
   background-color: #264653;
   font-family: 'Vollkorn', serif;

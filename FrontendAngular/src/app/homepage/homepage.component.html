@@ -43,94 +43,107 @@
       </p>
     </section>
     <section>
-      <h3>
-        Home and Other Assets <br />
-        <small>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Home and Other Assets</mat-panel-title>
+          <!-- <mat-panel-description>{{ }}</mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <p>
           Basically, how much does it cost to own and live in your home? Your car(s)? Do not include gas bills because this
           can vary.
-        </small>
-      </h3>
-      <div formGroupName="expenses">
-        <div fxLayout="column">
-          <label for="homeCosts">Property Tax</label>
-          <label for="homeCosts">Utilities</label>
-          <span>$&nbsp;<input formControlName="homeCosts" id="homeCosts" type="number" placeholder="Costs of living in home" /></span>
-          <!-- <input formControlName="homeCosts" id="homeCosts" type="text" placeholder="Costs of living in home"
-            (focus)="unformatMoney('homeCosts')" (blur)="formatMoney('homeCosts')" [value]="rf.homeCosts.value | currency:'USD':'symbol':'0.0-0'" /> -->
-          <div *ngIf="rf.expenses.get('homeCosts').invalid">
-            <small class="error-validation" *ngIf="rf.expenses.get('homeCosts').errors.required">required</small>
+        </p>
+        <br />
+        <div formGroupName="expenses">
+          <div fxLayout="column">
+            <label for="homeCosts">Property Tax</label>
+            <label for="homeCosts">Utilities</label>
+            <span>$&nbsp;<input formControlName="homeCosts" id="homeCosts" type="number" placeholder="Costs of living in home" /></span>
+            <!-- <input formControlName="homeCosts" id="homeCosts" type="text" placeholder="Costs of living in home"
+              (focus)="unformatMoney('homeCosts')" (blur)="formatMoney('homeCosts')" [value]="rf.homeCosts.value | currency:'USD':'symbol':'0.0-0'" /> -->
+            <div *ngIf="rf.expenses.get('homeCosts').invalid">
+              <small class="error-validation" *ngIf="rf.expenses.get('homeCosts').errors.required">required</small>
+            </div>
+          </div>
+          <div fxLayout="column">
+            <label for="carCosts">Car Insurance</label>
+            <label for="carCosts">Car Maintenence</label>
+            <label for="carCosts">Registration</label>
+            <span>$&nbsp;<input formControlName="carCosts" id="carCosts" type="number" placeholder="Costs of owning a car" /></span>
+            <div *ngIf="rf.expenses.get('carCosts').invalid">
+              <small class="error-validation" *ngIf="rf.expenses.get('carCosts').errors.required">required</small>
+            </div>
           </div>
         </div>
-        <div fxLayout="column">
-          <label for="carCosts">Car Insurance</label>
-          <label for="carCosts">Car Maintenence</label>
-          <label for="carCosts">Registration</label>
-          <span>$&nbsp;<input formControlName="carCosts" id="carCosts" type="number" placeholder="Costs of owning a car" /></span>
-          <div *ngIf="rf.expenses.get('carCosts').invalid">
-            <small class="error-validation" *ngIf="rf.expenses.get('carCosts').errors.required">required</small>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Healthcare and Insurance</mat-panel-title>
+          <!-- <mat-panel-description>{{ }}</mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <p>Note: This was difficult to estimate but google searches have averaged around $600.</p>
+        <br />
+        <div formGroupName="expenses">
+          <div fxLayout="column">
+            <label for="healthcare">Health/Life Insurance and Out of Pocket Costs</label>
+            <span>$&nbsp;<input formControlName="healthcare" id="healthcare" type="number" placeholder="Premiums and copays" /></span>
+            <div *ngIf="rf.expenses.get('healthcare').invalid">
+              <small class="error-validation" *ngIf="rf.expenses.get('healthcare').errors.required">required</small>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <h3>
-        Healthcare and Insurance <br />
-        <small>Note: This was difficult to estimate but google searches have averaged around $600.</small>
-      </h3>
-      <div formGroupName="expenses">
-        <div fxLayout="column">
-          <label for="healthcare">Health/Life Insurance and Out of Pocket Costs</label>
-          <span>$&nbsp;<input formControlName="healthcare" id="healthcare" type="number" placeholder="Premiums and copays" /></span>
-          <div *ngIf="rf.expenses.get('healthcare').invalid">
-            <small class="error-validation" *ngIf="rf.expenses.get('healthcare').errors.required">required</small>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Food and Groceries</mat-panel-title>
+          <!-- <mat-panel-description>{{ }}</mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <p>Restaurants, fast food, alcohol, groceries, etc.</p>
+        <br />
+        <div formGroupName="expenses">
+          <div fxLayout="column">
+            <label for="food">Food/Groceries</label>
+            <span>$&nbsp;<input formControlName="food" id="food" type="number"
+                placeholder="Restaurants, fast food, groceries, etc." /></span>
+            <div *ngIf="rf.expenses.get('food').invalid">
+              <small class="error-validation" *ngIf="rf.expenses.get('food').errors.required">required</small>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <h3>
-        Food and Groceries<br />
-        <small>Restaurants, fast food, alcohol, groceries, etc.</small>
-      </h3>
-      <div formGroupName="expenses">
-        <div fxLayout="column">
-          <label for="food">Food/Groceries</label>
-          <span>$&nbsp;<input formControlName="food" id="food" type="number" placeholder="Restaurants, fast food, groceries, etc." /></span>
-          <div *ngIf="rf.expenses.get('food').invalid">
-            <small class="error-validation" *ngIf="rf.expenses.get('food').errors.required">required</small>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Vacation Expenses</mat-panel-title>
+          <!-- <mat-panel-description>{{ }}</mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <p>Averaged over the year.</p>
+        <br />
+        <div formGroupName="expenses">
+          <div fxLayout="column">
+            <label for="vacation">Vacation Expenses</label>
+            <span>$&nbsp;<input formControlName="vacation" id="vacation" type="number" placeholder="Hotel, travel, and other major expenses" /></span>
+            <div *ngIf="rf.expenses.get('vacation').invalid">
+              <small class="error-validation" *ngIf="rf.expenses.get('vacation').errors.required">required</small>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <h3>
-        Vacation Expenses <br />
-        <small>Averaged over the year.</small>
-      </h3>
-      <div formGroupName="expenses">
-        <div fxLayout="column">
-          <label for="vacation">Vacation Expenses</label>
-          <span>$&nbsp;<input formControlName="vacation" id="vacation" type="number" placeholder="Hotel, travel, and other major expenses" /></span>
-          <div *ngIf="rf.expenses.get('vacation').invalid">
-            <small class="error-validation" *ngIf="rf.expenses.get('vacation').errors.required">required</small>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Personal Expenses</mat-panel-title>
+          <!-- <mat-panel-description>{{ }}</mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <p>Any optional expenses e.g. shopping, transportation costs, and everything else.</p>
+        <br />
+        <div formGroupName="expenses">
+          <div fxLayout="column">
+            <label for="personal">Personal Expenses</label>
+            <span>$&nbsp;<input formControlName="personal" id="personal" type="number" placeholder="Everything else" /></span>
+            <div *ngIf="rf.expenses.get('personal').invalid">
+              <small class="error-validation" *ngIf="rf.expenses.get('personal').errors.required">required</small>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-    <section>
-      <h3>
-        Personal Expenses <br />
-        <small>Any optional expenses e.g. shopping, transportation costs, and everything else.</small>
-      </h3>
-      <div formGroupName="expenses">
-        <div fxLayout="column">
-          <label for="personal">Personal Expenses</label>
-          <span>$&nbsp;<input formControlName="personal" id="personal" type="number" placeholder="Everything else" /></span>
-          <div *ngIf="rf.expenses.get('personal').invalid">
-            <small class="error-validation" *ngIf="rf.expenses.get('personal').errors.required">required</small>
-          </div>
-        </div>
-      </div>
+      </mat-expansion-panel>
     </section>
     <section>
       <h3>
