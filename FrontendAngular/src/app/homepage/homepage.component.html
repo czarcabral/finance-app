@@ -176,10 +176,22 @@
       </mat-accordion>
     </section>
     <section>
-      <h3>
-        Total Amount <br />
-      </h3>
-      <h3>${{ total | number:"0.0-0" }}</h3>
+      <h3>Total Amount is ${{ baseMonthlyCosts | number:"0.0-0" }} / month OR ${{ baseMonthlyCosts * 12 | number:"0.0-0" }} / year</h3>
+    </section>
+    <section>
+      <p>Now, because of inflation, this number is going to increase by about 2.5% every year</p>
+      <p>
+        If you are currently {{ rf.currentAge.value }} years old, then by the time you retire at {{ rf.retirementAge.value }} years
+        old, your monthly expenses will start at ${{ calcMonthlyCostsAtAge(rf.retirementAge.value) | number:"0.0-0" }} / month
+        OR ${{ calcMonthlyCostsAtAge(rf.retirementAge.value) * 12 | number:"0.0-0" }} / year.
+      </p>
+      <p>
+        Now, the assumption is that you will live at least until {{ rf.deathAge.value }} years old, so you will need to have enough
+        money to last you until then. And inflation will continue to increase your cost of living.
+      </p>
+      <p>
+        Adding this all together, the total amount you will need to retire comfortably, is ${{ totalCosts | number:"0.0-0" }}
+      </p>
     </section>
   </form>
 </main>

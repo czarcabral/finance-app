@@ -14,7 +14,8 @@ export class HomepageComponent implements OnInit {
   food = 0;
   vacation = 0;
   personal = 0;
-  total = 0;
+  baseMonthlyCosts = 0;
+  totalCosts = 0;
   submitted = false;
 
   constructor(private fb: FormBuilder) { }
@@ -26,7 +27,7 @@ export class HomepageComponent implements OnInit {
 
   initForms() {
     this.retirementForm = this.fb.group({
-      currentAge: [25, [Validators.required]],
+      currentAge: [23, [Validators.required]],
       retirementAge: [60, [Validators.required]],
       deathAge: [90, [Validators.required]],
       expenses: this.fb.group({
@@ -45,7 +46,8 @@ export class HomepageComponent implements OnInit {
     this.food = (expenses.groceries.value | 0) + (expenses.restaurants.value | 0);
     this.vacation = (expenses.vacation.value | 0);
     this.personal = (expenses.personal.value | 0);
-    this.total = this.assets + this.healthcare + this.food + this.vacation + this.personal;
+    this.baseMonthlyCosts = this.assets + this.healthcare + this.food + this.vacation + this.personal;
+    this.calcTotalCosts();
   }
 
   initSubscribers() {
@@ -56,8 +58,11 @@ export class HomepageComponent implements OnInit {
       this.food = (expenses.groceries | 0) + (expenses.restaurants | 0);
       this.vacation = (expenses.vacation | 0);
       this.personal = (expenses.personal | 0);
-      this.total = this.assets + this.healthcare + this.food + this.vacation + this.personal;
+      this.baseMonthlyCosts = this.assets + this.healthcare + this.food + this.vacation + this.personal;
     });
+    this.retirementForm.valueChanges.subscribe(val => {
+      this.calcTotalCosts();
+    })
   }
 
   submitUserInfo() {
@@ -81,7 +86,22 @@ export class HomepageComponent implements OnInit {
     ctrl.setValue(value);
   }
 
-  get rf() {
+  calcMonthlyCostsAtAge(targetAge: number): number {
+    const currentAge = this.retirementForm.controls.currentAge.value;
+    return this.baseMonthlyCosts * Math.pow(1.025, (targetAge - currentAge));
+  }
+
+  calcTotalCosts() {
+    this.totalCosts = 0;
+    const retirementAge = this.retirementForm.controls.retirementAge.value;
+    const deathAge = this.retirementForm.controls.deathAge.value;
+    for (let i = retirementAge; i <= deathAge; i++) {
+      this.totalCosts += this.calcMonthlyCostsAtAge(i) * 12;
+      // console.log(i, this.calcMonthlyCostsAtAge(i) * 12);
+    }
+  }
+
+  get rf(): any {
     return this.retirementForm.controls;
   }
 }
