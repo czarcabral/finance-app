@@ -33,9 +33,9 @@ export class HomepageComponent implements OnInit {
         homeCosts: [615],
         carCosts: [220],
         healthcare: [600],
-        groceries: [600],
-        restaurants: [600],
-        vacation: [250],
+        groceries: [400],
+        restaurants: [400],
+        vacation: [300],
         personal: [500],
       })
     });

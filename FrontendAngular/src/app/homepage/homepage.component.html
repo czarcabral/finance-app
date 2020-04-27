@@ -5,32 +5,24 @@
   <form [formGroup]="retirementForm" (ngSubmit)="submitUserInfo()">
     <section>
       <h3>Let's get started</h3>
-      <div>
-        <div fxLayout="column">
-          <label for="currentAge">How old are you?</label>
-          <input formControlName="currentAge" id="currentAge" type="number" placeholder="Your current age" />
-          <div *ngIf="rf.currentAge.invalid">
-            <small class="error-validation" *ngIf="rf.currentAge.errors.required">required</small>
-          </div>
-        </div>
-        <div fxLayout="column">
-          <label for="retirementAge">When do you expect to retire?</label>
-          <input formControlName="retirementAge" id="retirementAge" type="number" placeholder="Expected age of retirement" />
-          <div *ngIf="rf.retirementAge.invalid">
-            <small class="error-validation" *ngIf="rf.retirementAge.errors.required">required</small>
-            <!-- <div *ngIf="rf.currentAge.errors.minlength">Name should be 3 character.</div> -->
-            <!-- <input formControlName="homeCosts" id="homeCosts" type="text" placeholder="Costs of living in home"
-              (focus)="unformatMoney('homeCosts')" (blur)="formatMoney('homeCosts')"
-              [value]="rf.homeCosts.value | currency:'USD':'symbol':'0.0-0'" /> -->
-          </div>
-        </div>
-        <div fxLayout="column">
-          <label for="deathAge">When do you expect to die?</label>
-          <input formControlName="deathAge" id="deathAge" type="number" placeholder="Expected age of death" />
-          <div *ngIf="rf.deathAge.invalid">
-            <small class="error-validation" *ngIf="rf.deathAge.errors.required">required</small>
-          </div>
-        </div>
+      <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+        <mat-form-field fxFlex appearance="fill">
+          <mat-label>How old are you?</mat-label>
+          <input matInput formControlName="currentAge" type="number" placeholder="Your current age">
+        </mat-form-field>
+        <mat-form-field fxFlex appearance="fill">
+          <mat-label>When do you expect to retire?</mat-label>
+          <input matInput formControlName="retirementAge" type="number" placeholder="Expected age of retirement">
+          <!-- <small class="error-validation" *ngIf="rf.retirementAge.errors.required">required</small> -->
+          <!-- <div *ngIf="rf.currentAge.errors.minlength">Name should be 3 character.</div> -->
+          <!-- <input formControlName="homeCosts" id="homeCosts" type="text" placeholder="Costs of living in home"
+            (focus)="unformatMoney('homeCosts')" (blur)="formatMoney('homeCosts')"
+            [value]="rf.homeCosts.value | currency:'USD':'symbol':'0.0-0'" /> -->
+        </mat-form-field>
+        <mat-form-field fxFlex appearance="fill">
+          <mat-label>When do you expect to die?</mat-label>
+          <input matInput formControlName="deathAge" type="number" placeholder="Expected age of death">
+        </mat-form-field>
       </div>
     </section>
     <section>
@@ -63,8 +55,11 @@
                 <label for="homeCosts">Property Tax</label>
                 <label for="homeCosts">Utilities</label>
               </div>
-              <div fxFlex="40" fxLayout="column">
-                <span>$&nbsp;<input formControlName="homeCosts" id="homeCosts" type="number" placeholder="Costs of living in home" /></span>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="homeCosts" id="homeCosts" type="number" placeholder="Costs of living at home">
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
               </div>
             </div>
             <div fxLayout="row">
@@ -73,8 +68,11 @@
                 <label for="carCosts">Car Maintenence</label>
                 <label for="carCosts">Registration</label>
               </div>
-              <div fxFlex="40" fxLayout="column">
-                <span>$&nbsp;<input formControlName="carCosts" id="carCosts" type="number" placeholder="Costs of owning a car" /></span>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="carCosts" id="carCosts" type="number" placeholder="Costs of owning a car">
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
               </div>
             </div>
           </div>
@@ -91,8 +89,11 @@
               <div fxFlex="60" fxLayout="column">
                 <label for="healthcare">Health/Life Insurance and Out of Pocket Costs</label>
               </div>
-              <div fxFlex="40" fxLayout="column">
-                <span>$&nbsp;<input formControlName="healthcare" id="healthcare" type="number" placeholder="Premiums and copays" /></span>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="healthcare" id="healthcare" type="number" placeholder="Premiums and copays">
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
               </div>
             </div>
           </div>
@@ -109,18 +110,22 @@
               <div fxFlex="60" fxLayout="column">
                 <label for="groceries">Groceries</label>
               </div>
-              <div fxFlex="40" fxLayout="column">
-                <span>$&nbsp;<input formControlName="groceries" id="groceries" type="number"
-                    placeholder="Food and other essentials" /></span>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="groceries" id="groceries" type="number" placeholder="Food and other essentials">
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
               </div>
             </div>
             <div fxLayout="row">
               <div fxFlex="60" fxLayout="column">
                 <label for="restaurants">Eating Out</label>
               </div>
-              <div fxFlex="40" fxLayout="column">
-                <span>$&nbsp;<input formControlName="restaurants" id="restaurants" type="number"
-                    placeholder="Restaurants, fast food, etc." /></span>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="restaurants" id="restaurants" type="number" placeholder="Restaurants, fast food, etc.">
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
               </div>
             </div>
           </div>
@@ -137,9 +142,12 @@
               <div fxFlex="60" fxLayout="column">
                 <label for="vacation">Vacation Expenses</label>
               </div>
-              <div fxFlex="40" fxLayout="column">
-                <span>$&nbsp;<input formControlName="vacation" id="vacation" type="number"
-                  placeholder="Hotel, travel, and other major expenses" /></span>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="vacation" id="vacation" type="number"
+                      placeholder="Hotel, travel, and other major expenses">
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
               </div>
             </div>
           </div>
@@ -156,8 +164,11 @@
               <div fxFlex="60" fxLayout="column">
                 <label for="personal">Personal Expenses</label>
               </div>
-              <div fxFlex="40" fxLayout="column">
-                <span>$&nbsp;<input formControlName="personal" id="personal" type="number" placeholder="Everything else" /></span>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="personal" id="personal" type="number" placeholder="Everything else">
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
               </div>
             </div>
           </div>
