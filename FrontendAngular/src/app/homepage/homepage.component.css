@@ -1,12 +1,30 @@
-main {
-  padding: 50px 0;
+.flexBody {
+  height: 100%;
 }
 
 header {
-  padding: 150px 0px 75px 0px;
-  margin: 0 -100px;
-  color: #E9C46A;
-  background-color: #2A9D8F;
+  padding: 45px 0;
+  color: #E98074;
   text-align: center;
-  font-size: x-large;
+  font-family: 'Vollkorn', serif;
+  font-size: 30px;
+  /* fon */
+}
+
+header > h1 {
+  margin: 0;
+}
+
+main {
+  padding: 0 30px 30px 30px;
+  /* background-color: #E98074; */
+}
+
+form {
+  height: 100%;
+  /* box-sizing: border-box; */
+}
+
+.maxHeight {
+  height: 100%;
 }

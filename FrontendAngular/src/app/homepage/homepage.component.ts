@@ -97,7 +97,6 @@ export class HomepageComponent implements OnInit {
     const deathAge = this.retirementForm.controls.deathAge.value;
     for (let i = retirementAge; i <= deathAge; i++) {
       this.totalCosts += this.calcMonthlyCostsAtAge(i) * 12;
-      // console.log(i, this.calcMonthlyCostsAtAge(i) * 12);
     }
   }
 

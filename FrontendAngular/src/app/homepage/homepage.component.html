@@ -1,197 +1,202 @@
-<header>
-  <h1>Welcome to Retirement Planning!</h1>
-</header>
-<main>
-  <form [formGroup]="retirementForm" (ngSubmit)="submitUserInfo()">
-    <section>
-      <h3>Let's get started</h3>
-      <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
-        <mat-form-field fxFlex appearance="fill">
-          <mat-label>How old are you?</mat-label>
-          <input matInput formControlName="currentAge" type="number" placeholder="Your current age">
-        </mat-form-field>
-        <mat-form-field fxFlex appearance="fill">
-          <mat-label>When do you expect to retire?</mat-label>
-          <input matInput formControlName="retirementAge" type="number" placeholder="Expected age of retirement">
-          <!-- <small class="error-validation" *ngIf="rf.retirementAge.errors.required">required</small> -->
-          <!-- <div *ngIf="rf.currentAge.errors.minlength">Name should be 3 character.</div> -->
-          <!-- <input formControlName="homeCosts" id="homeCosts" type="text" placeholder="Costs of living in home"
-            (focus)="unformatMoney('homeCosts')" (blur)="formatMoney('homeCosts')"
-            [value]="rf.homeCosts.value | currency:'USD':'symbol':'0.0-0'" /> -->
-        </mat-form-field>
-        <mat-form-field fxFlex appearance="fill">
-          <mat-label>When do you expect to die?</mat-label>
-          <input matInput formControlName="deathAge" type="number" placeholder="Expected age of death">
-        </mat-form-field>
+<div fxLayout="column" class="flexBody">
+  <header>
+    <h1>Retirement Calculator</h1>
+  </header>
+  <main fxFlex="100">
+    <form [formGroup]="retirementForm" (ngSubmit)="submitUserInfo()">
+      <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px" class="maxHeight">
+        <mat-card class="mat-elevation-z8" fxFlex="50">
+          <h1>LEFT</h1>
+        </mat-card>
+        <mat-card class="mat-elevation-z8" fxFlex="50">
+          <h1>RIGHT</h1>
+        </mat-card>
       </div>
-    </section>
-    <section>
-      <p>
-        Now, imagine that you're retiring this year. You'll still need money to pay for normal monthly bills as well as
-        anything else that you want to spend your hard earned money on. How much money do you think you'd need per month?
-      </p>
-      <p>Note: To retire properly, let's assume that</p>
-      <ul>
-        <li>All debts (mortgage, car, student) are all paid off -- too variable to plan ahead</li>
-        <li>No income from rental properties -- rental income is too variable and beyond scope of this planner</li>
-        <li>Kids will probably be out of the house so do not include them in monthly costs</li>
-      </ul>
-    </section>
-    <section>
-      <mat-accordion>
-        <mat-expansion-panel >
-          <mat-expansion-panel-header class="right-aligned-header">
-            <mat-panel-title>Home and Other Assets</mat-panel-title>
-            <mat-panel-description>{{ assets | number:"0.0-0" }}</mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>
-            Basically, how much does it cost to own and live in your home? Your car(s)? Do not include gas bills because this
-            can vary.
-          </p>
-          <br />
-          <div formGroupName="expenses">
-            <div fxLayout="row">
-              <div fxFlex="60" fxLayout="column">
-                <label for="homeCosts">Property Tax</label>
-                <label for="homeCosts">Utilities</label>
+      <!-- <section>
+        <h3>Let's get started</h3>
+        <div fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="10px">
+          <mat-form-field fxFlex appearance="fill">
+            <mat-label>How old are you?</mat-label>
+            <input matInput formControlName="currentAge" type="number" placeholder="Your current age">
+          </mat-form-field>
+          <mat-form-field fxFlex appearance="fill">
+            <mat-label>When do you expect to retire?</mat-label>
+            <input matInput formControlName="retirementAge" type="number" placeholder="Expected age of retirement">
+          </mat-form-field>
+          <mat-form-field fxFlex appearance="fill">
+            <mat-label>When do you expect to die?</mat-label>
+            <input matInput formControlName="deathAge" type="number" placeholder="Expected age of death">
+          </mat-form-field>
+        </div>
+      </section>
+      <section>
+        <p>
+          Now, imagine that you're retiring this year. You'll still need money to pay for normal monthly bills as well as
+          anything else that you want to spend your hard earned money on. How much money do you think you'd need per month?
+        </p>
+        <p>Note: To retire properly, let's assume that</p>
+        <ul>
+          <li>All debts (mortgage, car, student) are all paid off -- too variable to plan ahead</li>
+          <li>No income from rental properties -- rental income is too variable and beyond scope of this planner</li>
+          <li>Kids will probably be out of the house so do not include them in monthly costs</li>
+        </ul>
+      </section>
+      <section>
+        <mat-accordion>
+          <mat-expansion-panel >
+            <mat-expansion-panel-header class="right-aligned-header">
+              <mat-panel-title>Home and Other Assets</mat-panel-title>
+              <mat-panel-description>{{ assets | number:"0.0-0" }}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>
+              Basically, how much does it cost to own and live in your home? Your car(s)? Do not include gas bills because this
+              can vary.
+            </p>
+            <br />
+            <div formGroupName="expenses">
+              <div fxLayout="row">
+                <div fxFlex="60" fxLayout="column">
+                  <label for="homeCosts">Property Tax</label>
+                  <label for="homeCosts">Utilities</label>
+                </div>
+                <div fxFlex="40">
+                  <mat-form-field appearance="fill">
+                    <input matInput formControlName="homeCosts" id="homeCosts" type="number" placeholder="Costs of living at home">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                </div>
               </div>
-              <div fxFlex="40">
-                <mat-form-field appearance="fill">
-                  <input matInput formControlName="homeCosts" id="homeCosts" type="number" placeholder="Costs of living at home">
-                  <span matPrefix>$&nbsp;</span>
-                </mat-form-field>
-              </div>
-            </div>
-            <div fxLayout="row">
-              <div fxFlex="60" fxLayout="column">
-                <label for="carCosts">Car Insurance</label>
-                <label for="carCosts">Car Maintenence</label>
-                <label for="carCosts">Registration</label>
-              </div>
-              <div fxFlex="40">
-                <mat-form-field appearance="fill">
-                  <input matInput formControlName="carCosts" id="carCosts" type="number" placeholder="Costs of owning a car">
-                  <span matPrefix>$&nbsp;</span>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header class="right-aligned-header">
-            <mat-panel-title>Healthcare and Insurance</mat-panel-title>
-            <mat-panel-description>{{ healthcare | number:"0.0-0" }}</mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>Note: This was difficult to estimate but google searches have averaged around $600.</p>
-          <br />
-          <div formGroupName="expenses">
-            <div fxLayout="row">
-              <div fxFlex="60" fxLayout="column">
-                <label for="healthcare">Health/Life Insurance and Out of Pocket Costs</label>
-              </div>
-              <div fxFlex="40">
-                <mat-form-field appearance="fill">
-                  <input matInput formControlName="healthcare" id="healthcare" type="number" placeholder="Premiums and copays">
-                  <span matPrefix>$&nbsp;</span>
-                </mat-form-field>
+              <div fxLayout="row">
+                <div fxFlex="60" fxLayout="column">
+                  <label for="carCosts">Car Insurance</label>
+                  <label for="carCosts">Car Maintenence</label>
+                  <label for="carCosts">Registration</label>
+                </div>
+                <div fxFlex="40">
+                  <mat-form-field appearance="fill">
+                    <input matInput formControlName="carCosts" id="carCosts" type="number" placeholder="Costs of owning a car">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                </div>
               </div>
             </div>
-          </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header class="right-aligned-header">
-            <mat-panel-title>Food and Groceries</mat-panel-title>
-            <mat-panel-description>{{ food | number:"0.0-0" }}</mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>Restaurants, fast food, alcohol, groceries, etc.</p>
-          <br />
-          <div formGroupName="expenses">
-            <div fxLayout="row">
-              <div fxFlex="60" fxLayout="column">
-                <label for="groceries">Groceries</label>
-              </div>
-              <div fxFlex="40">
-                <mat-form-field appearance="fill">
-                  <input matInput formControlName="groceries" id="groceries" type="number" placeholder="Food and other essentials">
-                  <span matPrefix>$&nbsp;</span>
-                </mat-form-field>
-              </div>
-            </div>
-            <div fxLayout="row">
-              <div fxFlex="60" fxLayout="column">
-                <label for="restaurants">Eating Out</label>
-              </div>
-              <div fxFlex="40">
-                <mat-form-field appearance="fill">
-                  <input matInput formControlName="restaurants" id="restaurants" type="number" placeholder="Restaurants, fast food, etc.">
-                  <span matPrefix>$&nbsp;</span>
-                </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="right-aligned-header">
+              <mat-panel-title>Healthcare and Insurance</mat-panel-title>
+              <mat-panel-description>{{ healthcare | number:"0.0-0" }}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Note: This was difficult to estimate but google searches have averaged around $600.</p>
+            <br />
+            <div formGroupName="expenses">
+              <div fxLayout="row">
+                <div fxFlex="60" fxLayout="column">
+                  <label for="healthcare">Health/Life Insurance and Out of Pocket Costs</label>
+                </div>
+                <div fxFlex="40">
+                  <mat-form-field appearance="fill">
+                    <input matInput formControlName="healthcare" id="healthcare" type="number" placeholder="Premiums and copays">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                </div>
               </div>
             </div>
-          </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header class="right-aligned-header">
-            <mat-panel-title>Vacation Expenses</mat-panel-title>
-            <mat-panel-description>{{ vacation | number:"0.0-0" }}</mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>Averaged over the year.</p>
-          <br />
-          <div formGroupName="expenses">
-            <div fxLayout="row">
-              <div fxFlex="60" fxLayout="column">
-                <label for="vacation">Vacation Expenses</label>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="right-aligned-header">
+              <mat-panel-title>Food and Groceries</mat-panel-title>
+              <mat-panel-description>{{ food | number:"0.0-0" }}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Restaurants, fast food, alcohol, groceries, etc.</p>
+            <br />
+            <div formGroupName="expenses">
+              <div fxLayout="row">
+                <div fxFlex="60" fxLayout="column">
+                  <label for="groceries">Groceries</label>
+                </div>
+                <div fxFlex="40">
+                  <mat-form-field appearance="fill">
+                    <input matInput formControlName="groceries" id="groceries" type="number" placeholder="Food and other essentials">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                </div>
               </div>
-              <div fxFlex="40">
-                <mat-form-field appearance="fill">
-                  <input matInput formControlName="vacation" id="vacation" type="number"
-                      placeholder="Hotel, travel, and other major expenses">
-                  <span matPrefix>$&nbsp;</span>
-                </mat-form-field>
-              </div>
-            </div>
-          </div>
-        </mat-expansion-panel>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header class="right-aligned-header">
-            <mat-panel-title>Personal Expenses</mat-panel-title>
-            <mat-panel-description>{{ personal | number:"0.0-0" }}</mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>Any optional expenses e.g. shopping, transportation costs, and everything else.</p>
-          <br />
-          <div formGroupName="expenses">
-            <div fxLayout="row">
-              <div fxFlex="60" fxLayout="column">
-                <label for="personal">Personal Expenses</label>
-              </div>
-              <div fxFlex="40">
-                <mat-form-field appearance="fill">
-                  <input matInput formControlName="personal" id="personal" type="number" placeholder="Everything else">
-                  <span matPrefix>$&nbsp;</span>
-                </mat-form-field>
+              <div fxLayout="row">
+                <div fxFlex="60" fxLayout="column">
+                  <label for="restaurants">Eating Out</label>
+                </div>
+                <div fxFlex="40">
+                  <mat-form-field appearance="fill">
+                    <input matInput formControlName="restaurants" id="restaurants" type="number" placeholder="Restaurants, fast food, etc.">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                </div>
               </div>
             </div>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </section>
-    <section>
-      <h3>Total Amount is ${{ baseMonthlyCosts | number:"0.0-0" }} / month OR ${{ baseMonthlyCosts * 12 | number:"0.0-0" }} / year</h3>
-    </section>
-    <section>
-      <p>Now, because of inflation, this number is going to increase by about 2.5% every year</p>
-      <p>
-        If you are currently {{ rf.currentAge.value }} years old, then by the time you retire at {{ rf.retirementAge.value }} years
-        old, your monthly expenses will start at ${{ calcMonthlyCostsAtAge(rf.retirementAge.value) | number:"0.0-0" }} / month
-        OR ${{ calcMonthlyCostsAtAge(rf.retirementAge.value) * 12 | number:"0.0-0" }} / year.
-      </p>
-      <p>
-        Now, the assumption is that you will live at least until {{ rf.deathAge.value }} years old, so you will need to have enough
-        money to last you until then. And inflation will continue to increase your cost of living.
-      </p>
-      <p>
-        Adding this all together, the total amount you will need to retire comfortably, is ${{ totalCosts | number:"0.0-0" }}
-      </p>
-    </section>
-  </form>
-</main>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="right-aligned-header">
+              <mat-panel-title>Vacation Expenses</mat-panel-title>
+              <mat-panel-description>{{ vacation | number:"0.0-0" }}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Averaged over the year.</p>
+            <br />
+            <div formGroupName="expenses">
+              <div fxLayout="row">
+                <div fxFlex="60" fxLayout="column">
+                  <label for="vacation">Vacation Expenses</label>
+                </div>
+                <div fxFlex="40">
+                  <mat-form-field appearance="fill">
+                    <input matInput formControlName="vacation" id="vacation" type="number"
+                        placeholder="Hotel, travel, and other major expenses">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header class="right-aligned-header">
+              <mat-panel-title>Personal Expenses</mat-panel-title>
+              <mat-panel-description>{{ personal | number:"0.0-0" }}</mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Any optional expenses e.g. shopping, transportation costs, and everything else.</p>
+            <br />
+            <div formGroupName="expenses">
+              <div fxLayout="row">
+                <div fxFlex="60" fxLayout="column">
+                  <label for="personal">Personal Expenses</label>
+                </div>
+                <div fxFlex="40">
+                  <mat-form-field appearance="fill">
+                    <input matInput formControlName="personal" id="personal" type="number" placeholder="Everything else">
+                    <span matPrefix>$&nbsp;</span>
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </section>
+      <section>
+        <h3>Total Amount is ${{ baseMonthlyCosts | number:"0.0-0" }} / month OR ${{ baseMonthlyCosts * 12 | number:"0.0-0" }} / year</h3>
+      </section>
+      <section>
+        <p>Now, because of inflation, this number is going to increase by about 2.5% every year</p>
+        <p>
+          If you are currently {{ rf.currentAge.value }} years old, then by the time you retire at {{ rf.retirementAge.value }} years
+          old, your monthly expenses will start at ${{ calcMonthlyCostsAtAge(rf.retirementAge.value) | number:"0.0-0" }} / month
+          OR ${{ calcMonthlyCostsAtAge(rf.retirementAge.value) * 12 | number:"0.0-0" }} / year.
+        </p>
+        <p>
+          Now, the assumption is that you will live at least until {{ rf.deathAge.value }} years old, so you will need to have enough
+          money to last you until then. And inflation will continue to increase your cost of living.
+        </p>
+        <p>
+          Adding this all together, the total amount you will need to retire comfortably, is ${{ totalCosts | number:"0.0-0" }}
+        </p>
+      </section> -->
+    </form>
+  </main>
+</div>

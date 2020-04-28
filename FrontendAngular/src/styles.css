@@ -1,19 +1,18 @@
 html, body {
+  margin: 0;
   height: 100%;
 }
 
 body {
-  margin: 0;
-  padding: 0 200px;
-  background-color: #264653;
-  font-family: 'Vollkorn', serif;
+  background-color: #D8C3A5;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 22px;
 }
 
+/* right align mat header */
 .right-aligned-header > .mat-content {
     justify-content: space-between;
 }
-
 .right-aligned-header > .mat-content > mat-panel-title,
 .right-aligned-header > .mat-content > mat-panel-description {
   flex: 0 0 auto;
