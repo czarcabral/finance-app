@@ -21,31 +21,30 @@ export class HomepageComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.initForms();
+    this.initFormsAndFields();
     this.initSubscribers();
   }
 
-  initForms() {
+  initFormsAndFields() {
     this.retirementForm = this.fb.group({
-      currentAge: [23, [Validators.required]],
-      retirementAge: [60, [Validators.required]],
-      deathAge: [90, [Validators.required]],
+      currentAge: ['', [Validators.required]],
+      retirementAge: ['', [Validators.required]],
+      deathAge: ['', [Validators.required]],
       expenses: this.fb.group({
-        homeCosts: [615],
-        carCosts: [220],
-        healthcare: [600],
-        groceries: [400],
-        restaurants: [400],
-        vacation: [300],
-        personal: [500],
+        homeCosts: [''],
+        carCosts: [''],
+        healthcare: [''],
+        groceries: [''],
+        restaurants: [''],
+        vacation: [''],
+        personal: [''],
       })
     });
-    const expenses = (this.retirementForm.controls.expenses as FormGroup).controls;
-    this.assets = (expenses.homeCosts.value | 0) + (expenses.carCosts.value | 0);
-    this.healthcare = (expenses.healthcare.value | 0);
-    this.food = (expenses.groceries.value | 0) + (expenses.restaurants.value | 0);
-    this.vacation = (expenses.vacation.value | 0);
-    this.personal = (expenses.personal.value | 0);
+    this.assets = 0;
+    this.healthcare = 0;
+    this.food = 0;
+    this.vacation = 0;
+    this.personal = 0;
     this.baseMonthlyCosts = this.assets + this.healthcare + this.food + this.vacation + this.personal;
     this.calcTotalCosts();
   }
@@ -93,7 +92,7 @@ export class HomepageComponent implements OnInit {
 
   calcTotalCosts() {
     this.totalCosts = 0;
-    const retirementAge = this.retirementForm.controls.retirementAge.value;
+    const retirementAge = (this.retirementForm.controls.retirementAge.value | 0);
     const deathAge = this.retirementForm.controls.deathAge.value;
     for (let i = retirementAge; i <= deathAge; i++) {
       this.totalCosts += this.calcMonthlyCostsAtAge(i) * 12;

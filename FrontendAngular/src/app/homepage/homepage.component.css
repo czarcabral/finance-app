@@ -1,14 +1,7 @@
-.flexBody {
-  height: 100%;
-}
-
 header {
-  padding: 45px 0;
   color: #E98074;
-  text-align: center;
   font-family: 'Vollkorn', serif;
   font-size: 30px;
-  /* fon */
 }
 
 header > h1 {
@@ -17,14 +10,9 @@ header > h1 {
 
 main {
   padding: 0 30px 30px 30px;
-  /* background-color: #E98074; */
 }
 
-form {
-  height: 100%;
-  /* box-sizing: border-box; */
-}
-
-.maxHeight {
-  height: 100%;
+mat-card {
+  overflow-x: auto;
+  overflow-y: auto
 }
