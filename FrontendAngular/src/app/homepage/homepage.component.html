@@ -1,45 +1,47 @@
 <div fxLayout="column" fxFill>
-  <header fxFlex="20">
-    <h1 fxFlex="100" fxLayoutAlign="center center">Retirement Calculator</h1>
+  <header fxFlex="20" fxFlex.xs="10">
+    <h1 fxFlex="100" fxLayoutAlign="center center" class="larger-h1" [ngClass.xs]="{'larger-h1': false}">Retirement Calculator</h1>
   </header>
-  <main fxFlex="80" fxLayout="row" fxLayoutAlign="space-between stretch" fxLayoutGap="20px" [formGroup]="retirementForm"
-      (ngSubmit)="submitUserInfo()">
-    <mat-card class="mat-elevation-z8" fxFlex="50">
+  <main fxFlex="80" fxFlex.xs="90" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch" fxLayoutGap="5px"
+      [formGroup]="retirementForm" (ngSubmit)="submitUserInfo()">
+    <mat-card class="mat-elevation-z8" fxFlex="65">
       <mat-accordion>
         <mat-expansion-panel>
           <mat-expansion-panel-header class="right-aligned-header">
             <mat-panel-title>Let's get started</mat-panel-title>
           </mat-expansion-panel-header>
-          <div fxLayout="row">
-            <div fxFlex="60">
-              <label for="currentAge">How old are you?</label>
+          <section fxLayout="column">
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="60">
+                <label for="currentAge">How old are you?</label>
+              </div>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="currentAge" id="currentAge" type="number" placeholder="30">
+                </mat-form-field>
+              </div>
             </div>
-            <div fxFlex="40">
-              <mat-form-field appearance="fill">
-                <input matInput formControlName="currentAge" id="currentAge" type="number" placeholder="30">
-              </mat-form-field>
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="60">
+                <label for="retirementAge">When do you expect to retire?</label>
+              </div>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="retirementAge" id="retirementAge" type="number" placeholder="60">
+                </mat-form-field>
+              </div>
             </div>
-          </div>
-          <div fxLayout="row">
-            <div fxFlex="60">
-              <label for="retirementAge">When do you expect to retire?</label>
+            <div fxLayout="row" fxLayout.xs="column">
+              <div fxFlex="60">
+                <label for="deathAge">How old do you want to live up to?</label>
+              </div>
+              <div fxFlex="40">
+                <mat-form-field appearance="fill">
+                  <input matInput formControlName="deathAge" id="deathAge" type="number" placeholder="90">
+                </mat-form-field>
+              </div>
             </div>
-            <div fxFlex="40">
-              <mat-form-field appearance="fill">
-                <input matInput formControlName="retirementAge" id="retirementAge" type="number" placeholder="60">
-              </mat-form-field>
-            </div>
-          </div>
-          <div fxLayout="row">
-            <div fxFlex="60">
-              <label for="deathAge">How old do you want to live up to?</label>
-            </div>
-            <div fxFlex="40">
-              <mat-form-field appearance="fill">
-                <input matInput formControlName="deathAge" id="deathAge" type="number" placeholder="90">
-              </mat-form-field>
-            </div>
-          </div>
+          </section>
         </mat-expansion-panel>
         <mat-expansion-panel>
           <mat-expansion-panel-header class="right-aligned-header">
@@ -67,7 +69,7 @@
           </p>
           <br />
           <div formGroupName="expenses">
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayout.xs="column">
               <div fxFlex="60" fxLayout="column">
                 <label for="homeCosts">Property Tax</label>
                 <label for="homeCosts">Utilities</label>
@@ -80,7 +82,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayout.xs="column">
               <div fxFlex="60" fxLayout="column">
                 <label for="carCosts">Car Insurance</label>
                 <label for="carCosts">Car Maintenence</label>
@@ -103,7 +105,7 @@
           <p>Note: This was difficult to estimate but google searches have averaged around $600.</p>
           <br />
           <div formGroupName="expenses">
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayout.xs="column">
               <div fxFlex="60" fxLayout="column">
                 <label for="healthcare">Health/Life Insurance and Out of Pocket Costs</label>
               </div>
@@ -124,7 +126,7 @@
           <p>Restaurants, fast food, alcohol, groceries, etc.</p>
           <br />
           <div formGroupName="expenses">
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayout.xs="column">
               <div fxFlex="60" fxLayout="column">
                 <label for="groceries">Groceries</label>
               </div>
@@ -135,7 +137,7 @@
                 </mat-form-field>
               </div>
             </div>
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayout.xs="column">
               <div fxFlex="60" fxLayout="column">
                 <label for="restaurants">Eating Out</label>
               </div>
@@ -156,7 +158,7 @@
           <p>Averaged over the year.</p>
           <br />
           <div formGroupName="expenses">
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayout.xs="column">
               <div fxFlex="60" fxLayout="column">
                 <label for="vacation">Vacation Expenses</label>
               </div>
@@ -178,7 +180,7 @@
           <p>Any optional expenses e.g. shopping, transportation costs, and everything else.</p>
           <br />
           <div formGroupName="expenses">
-            <div fxLayout="row">
+            <div fxLayout="row" fxLayout.xs="column">
               <div fxFlex="60" fxLayout="column">
                 <label for="personal">Personal Expenses</label>
               </div>
@@ -193,7 +195,7 @@
         </mat-expansion-panel>
       </mat-accordion>
     </mat-card>
-    <mat-card class="mat-elevation-z8" fxFlex="50">
+    <mat-card class="mat-elevation-z8" fxFlex="35">
       <p>Current expenses is ${{ baseMonthlyCosts | number:"0.0-0" }} / month OR ${{ baseMonthlyCosts * 12 | number:"0.0-0" }} / year</p>
       <section *ngIf="rf.currentAge.valid && rf.retirementAge.valid && rf.deathAge.valid">
         <p>Now, because of inflation, this number is going to increase by about 2.5% every year</p>
