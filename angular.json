@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ParentApp": {
+    "parent-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ParentApp",
+            "outputPath": "dist/parent-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -58,18 +58,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ParentApp:build"
+            "browserTarget": "parent-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ParentApp:build:production"
+              "browserTarget": "parent-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ParentApp:build"
+            "browserTarget": "parent-app:build"
           }
         },
         "test": {
@@ -105,7 +105,7 @@
         }
       }
     },
-    "ParentApp-e2e": {
+    "parent-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
 
@@ -114,11 +114,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ParentApp:serve"
+            "devServerTarget": "parent-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ParentApp:serve:production"
+              "devServerTarget": "parent-app:serve:production"
             }
           }
         },
@@ -465,5 +465,5 @@
       }
     }
   },
-  "defaultProject": "ParentApp"
+  "defaultProject": "parent-app"
 }
