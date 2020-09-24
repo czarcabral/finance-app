@@ -12,4 +12,8 @@ export class NavComponent implements OnInit {
   ngOnInit() {
   }
 
+  myfunc() {
+    console.log("going to loan-vs-investment-app");
+  }
+
 }

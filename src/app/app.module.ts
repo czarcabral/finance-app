@@ -7,6 +7,7 @@ import { App1SharedModule } from '../../projects/app1/src/app/app.module';
 import { App2SharedModule } from '../../projects/app2/src/app/app.module';
 import { NavComponent } from './nav/nav.component';
 import { RetirementAppSharedModule } from '../../projects/retirement-app/src/app/app.module';
+import { LoanVsInvestmentAppSharedModule } from '../../projects/loan-vs-investment-app/src/app/app.module';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { RetirementAppSharedModule } from '../../projects/retirement-app/src/app
     App1SharedModule.forRoot(),
     App2SharedModule.forRoot(),
     RetirementAppSharedModule.forRoot(),
+    LoanVsInvestmentAppSharedModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

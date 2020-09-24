@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { RetirementAppSharedModule } from '../../projects/retirement-app/src/app/app.module';
 import { App1SharedModule } from '../../projects/app1/src/app/app.module';
 import { App2SharedModule } from '../../projects/app2/src/app/app.module';
+import { LoanVsInvestmentAppSharedModule } from '../../projects/loan-vs-investment-app/src/app/app.module';
 
 const routes: Routes = [
   {
@@ -14,8 +15,12 @@ const routes: Routes = [
     loadChildren: '../../projects/app2/src/app/app.module#App2SharedModule'
   },
   {
-    path: 'retirementApp',
+    path: 'retirement-app',
     loadChildren: '../../projects/retirement-app/src/app/app.module#RetirementAppSharedModule'
+  },
+  {
+    path: 'loan-vs-investment-app',
+    loadChildren: '../../projects/loan-vs-investment-app/src/app/app.module#LoanVsInvestmentAppSharedModule'
   },
   { path: '**', redirectTo: '/app1/one' },
 ];
@@ -26,6 +31,7 @@ const routes: Routes = [
     App1SharedModule.forRoot(),
     App2SharedModule.forRoot(),
     RetirementAppSharedModule.forRoot(),
+    LoanVsInvestmentAppSharedModule.forRoot(),
   ],
   exports: [RouterModule]
 })

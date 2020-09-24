@@ -108,7 +108,6 @@
     "parent-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
-
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
@@ -156,7 +155,6 @@
               "projects/app1/src/styles.css"
             ],
             "scripts": []
-
           },
           "configurations": {
             "production": {
@@ -457,6 +455,125 @@
               "projects/retirement-app/tsconfig.app.json",
               "projects/retirement-app/tsconfig.spec.json"
             ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "loan-vs-investment-app": {
+      "root": "projects/loan-vs-investment-app/",
+      "sourceRoot": "projects/loan-vs-investment-app/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/loan-vs-investment-app",
+            "index": "projects/loan-vs-investment-app/src/index.html",
+            "main": "projects/loan-vs-investment-app/src/main.ts",
+            "polyfills": "projects/loan-vs-investment-app/src/polyfills.ts",
+            "tsConfig": "projects/loan-vs-investment-app/tsconfig.app.json",
+            "assets": [
+              "projects/loan-vs-investment-app/src/favicon.ico",
+              "projects/loan-vs-investment-app/src/assets"
+            ],
+            "styles": [
+              "projects/loan-vs-investment-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/loan-vs-investment-app/src/environments/environment.ts",
+                  "with": "projects/loan-vs-investment-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "loan-vs-investment-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "loan-vs-investment-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "loan-vs-investment-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/loan-vs-investment-app/src/test.ts",
+            "polyfills": "projects/loan-vs-investment-app/src/polyfills.ts",
+            "tsConfig": "projects/loan-vs-investment-app/tsconfig.spec.json",
+            "karmaConfig": "projects/loan-vs-investment-app/karma.conf.js",
+            "styles": [
+              "projects/loan-vs-investment-app/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/loan-vs-investment-app/src/favicon.ico",
+              "projects/loan-vs-investment-app/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/loan-vs-investment-app/tsconfig.app.json",
+              "projects/loan-vs-investment-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "loan-vs-investment-app-e2e": {
+      "root": "projects/loan-vs-investment-app-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/loan-vs-investment-app-e2e/protractor.conf.js",
+            "devServerTarget": "loan-vs-investment-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "loan-vs-investment-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/loan-vs-investment-app-e2e/tsconfig.e2e.json",
             "exclude": [
               "**/node_modules/**"
             ]
